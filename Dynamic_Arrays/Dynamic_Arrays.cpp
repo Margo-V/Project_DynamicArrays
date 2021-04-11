@@ -27,10 +27,11 @@ void main()
 {
 	setlocale(LC_ALL, "rus");
 
-	int n;
+	
+#ifdef ARRAYS1
+	int n = 0;
 	int index;
 	int value;//Добавляемое значение
-#ifdef ARRAYS1
 	cout << "Введите размер массива: " << endl;
 	cin >> n;
 	int* arr = new int[n] {};
@@ -74,7 +75,38 @@ void main()
 	delete[] arr;
 #endif // ARRAYS1
 
+	int m_2 = 0; // количество строк
+	int n_2 = 0; //количество элементов строки(столбцы)
 
+	cout << "Введите количество строк: ";
+	cin >> m_2;
+	cout << "Введите количество элементов строки: ";
+	cin >> n_2;
+	//1) Создаем массив указателей и сохраняем его адрес в указ на указ
+	int** arr = new int* [m_2];
+	//2) Выделяем память под строки 2-мерного массива:
+	for (int i = 0; i < m_2; i++) {
+		arr[i] = new int[n_2] {};
+	}
+
+	cout << "Память выделена: " << endl;
+
+	FillRand(arr, m_2, n_2);
+	Print(arr, m_2, n_2);
+
+	cout << "Добаление строки в КОНЕЦ массив:\n";
+	push_row_back(arr, m_2, n_2);
+	Print(arr, m_2, n_2);
+
+	cout << "Добаление строки в НАЧАЛО массивв:\n";
+	push_row_front(arr, m_2, n_2);
+
+	//3) Удаление элементов строк
+	for (int i = 0; i < m_2; i++) {
+		delete[] arr[i];
+	}
+	//4) Удаление массива указателей
+	delete[] arr;
 
 
 }
@@ -86,11 +118,28 @@ void FillRand(int arr[], const int n)
 		arr[i] = rand() % 100;
 	}
 }
+void FillRand(int** arr, const int m, const int n)
+{
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			arr[i][j] = rand() % 100;
+		}
+	}
+}
 void Print(int arr[], const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
 		cout << arr[i] << tab;
+	}
+}
+void Print(int** arr, const int m, const int n)
+{
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			cout << arr[i][j] << tab;
+		}
+		cout << endl;
 	}
 }
 
