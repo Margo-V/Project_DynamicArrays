@@ -19,18 +19,19 @@ void erase(int*& arr, int& n, int index);
 
 void push_row_back(int**& arr, int& m, const int n);
 void push_row_front(int**& arr, int& m, const int n);
+void insert_row(int**& arr, int& m, const int n, int index);
 
 void pop_row_back(int**& arr, int& m, const int n);
-
+void pop_row_front(int**& arr, int& m, const int n);
+void erase_row(int**& arr, int& m, const int n, int index);
 
 void main()
 {
 	setlocale(LC_ALL, "rus");
-
+	int index;
 	
 #ifdef ARRAYS1
 	int n = 0;
-	int index;
 	int value;//Добавляемое значение
 	cout << "Введите размер массива: " << endl;
 	cin >> n;
@@ -98,8 +99,27 @@ void main()
 	push_row_back(arr, m_2, n_2);
 	Print(arr, m_2, n_2);
 
-	cout << "Добаление строки в НАЧАЛО массивв:\n";
+	cout << "Добаление строки в НАЧАЛО массив:\n";
 	push_row_front(arr, m_2, n_2);
+	Print(arr, m_2, n_2);
+
+	cout << "Добаление строки ПО ИНДЕКСУ в массив:\n";
+	cout << "Введите индекс добавляемого элемента:"<< tab; cin >> index;
+	insert_row(arr, m_2, n_2, index);
+	Print(arr, m_2, n_2);
+
+	cout << "\n\nУдаление строки из КОНЦА массива: \n";
+	pop_row_back(arr, m_2, n_2);
+	Print(arr, m_2, n_2);
+
+	cout << "\n\nУдаление строки с НАЧАЛА массива: \n";
+	pop_row_front(arr, m_2, n_2);
+	Print(arr, m_2, n_2);
+
+	cout << "\n\nУдаление строки ПО ИНДЕКСУ из массива: \n";
+	cout << "Введите индекс:" << tab; cin >> index;
+	erase_row(arr, m_2, n_2, index);
+	Print(arr, m_2, n_2);
 
 	//3) Удаление элементов строк
 	for (int i = 0; i < m_2; i++) {
@@ -107,7 +127,6 @@ void main()
 	}
 	//4) Удаление массива указателей
 	delete[] arr;
-
 
 }
 
@@ -237,27 +256,44 @@ void erase(int*& arr, int& n, int index)
 void push_row_back(int**& arr, int& m, const int n)
 {
 	int** buffer = new int* [m + 1];
+
 	for (int i = 0; i < m; i++) {
 		buffer[i] = arr[i];
 	}
 	delete[] arr;
 
 	arr = buffer;
-	arr[0] = new int[n] {};
+	arr[m] = new int[n] {};
 	m++;
 }
 void push_row_front(int**& arr, int& m, const int n)
 {
 
-	int** buffer = new int* [m + 1]{};
+	int** buffer = new int*[m + 1]{};
 
 	for (int i = 0; i < m; i++) {
 		buffer[i + 1] = arr[i];
 	}
 
-	delete[]arr;
+	delete[] arr;
 	arr = buffer;
-	arr[0] = new int[n] {};
+	arr[0] = new int[n]{};
+	m++;
+}
+void insert_row(int**& arr, int& m, const int n, int index)
+{
+	int** buffer = new int* [m + 1]{};
+
+	for (int i = 0; i < index; i++) {
+		buffer[i] = arr[i];
+	}
+	for (int i = index; i < m + 1; i++) {
+		buffer[i + 1] = arr[i];
+	}
+
+	delete[] arr;
+	arr = buffer;
+	arr[index] = new int[n] {};
 	m++;
 }
 
@@ -270,4 +306,32 @@ void pop_row_back(int**& arr, int& m, const int n)
 	delete[] arr[m];
 	delete[] arr;
 	arr = buffer;
+}
+void pop_row_front(int**& arr, int& m, const int n) 
+{
+	int** buffer = new int* [--m]{};
+
+	for (int i = 0; i < m; i++) {
+		buffer[i] = arr[i + 1];
+	}
+
+	delete[] arr[0];
+	delete[] arr;
+	arr = buffer;
+
+}
+void erase_row(int**& arr, int& m, const int n, int index)
+{
+	int** buffer = new int* [--m]{};
+
+	for (int i = 0; i < index; i++) {
+		buffer[i] = arr[i];
+	}
+	for (int i = index; i < m; i++) {
+		buffer[i] = arr[i + 1];
+	}
+	delete[]arr[index];
+	delete[] arr;
+	arr = buffer;
+
 }
