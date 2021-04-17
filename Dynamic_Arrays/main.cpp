@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 using namespace std;
 #define tab "\t"
-//#define ARRAYS1
+#define ARRAYS1
 
 void FillRand(int arr[], const int n);
 void FillRand(int** arr, const int m, const int n);
@@ -79,54 +79,54 @@ void main()
 	int m_2 = 0; // количество строк
 	int n_2 = 0; //количество элементов строки(столбцы)
 
-	cout << "Введите количество строк: ";
+	cout << "\n\n\nВведите количество строк: ";
 	cin >> m_2;
 	cout << "Введите количество элементов строки: ";
 	cin >> n_2;
 	//1) Создаем массив указателей и сохраняем его адрес в указ на указ
-	int** arr = new int* [m_2];
+	int** arr2 = new int* [m_2];
 	//2) Выделяем память под строки 2-мерного массива:
 	for (int i = 0; i < m_2; i++) {
-		arr[i] = new int[n_2] {};
+		arr2[i] = new int[n_2] {};
 	}
 
 	cout << "Память выделена: " << endl;
 
-	FillRand(arr, m_2, n_2);
-	Print(arr, m_2, n_2);
+	FillRand(arr2, m_2, n_2);
+	Print(arr2, m_2, n_2);
 
 	cout << "Добаление строки в КОНЕЦ массив:\n";
-	push_row_back(arr, m_2, n_2);
-	Print(arr, m_2, n_2);
+	push_row_back(arr2, m_2, n_2);
+	Print(arr2, m_2, n_2);
 
 	cout << "Добаление строки в НАЧАЛО массив:\n";
-	push_row_front(arr, m_2, n_2);
-	Print(arr, m_2, n_2);
+	push_row_front(arr2, m_2, n_2);
+	Print(arr2, m_2, n_2);
 
 	cout << "Добаление строки ПО ИНДЕКСУ в массив:\n";
 	cout << "Введите индекс добавляемого элемента:"<< tab; cin >> index;
-	insert_row(arr, m_2, n_2, index);
-	Print(arr, m_2, n_2);
+	insert_row(arr2, m_2, n_2, index);
+	Print(arr2, m_2, n_2);
 
 	cout << "\n\nУдаление строки из КОНЦА массива: \n";
-	pop_row_back(arr, m_2, n_2);
-	Print(arr, m_2, n_2);
+	pop_row_back(arr2, m_2, n_2);
+	Print(arr2, m_2, n_2);
 
 	cout << "\n\nУдаление строки с НАЧАЛА массива: \n";
-	pop_row_front(arr, m_2, n_2);
-	Print(arr, m_2, n_2);
+	pop_row_front(arr2, m_2, n_2);
+	Print(arr2, m_2, n_2);
 
 	cout << "\n\nУдаление строки ПО ИНДЕКСУ из массива: \n";
 	cout << "Введите индекс:" << tab; cin >> index;
-	erase_row(arr, m_2, n_2, index);
-	Print(arr, m_2, n_2);
+	erase_row(arr2, m_2, n_2, index);
+	Print(arr2, m_2, n_2);
 
 	//3) Удаление элементов строк
 	for (int i = 0; i < m_2; i++) {
-		delete[] arr[i];
+		delete[] arr2[i];
 	}
 	//4) Удаление массива указателей
-	delete[] arr;
+	delete[] arr2;
 
 }
 
