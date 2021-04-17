@@ -1,10 +1,13 @@
 ﻿#include <iostream>
 using namespace std;
 #define tab "\t"
-#define ARRAYS1
+//#define ARRAYS1
 
-void FillRand(int arr[], const int n);
-void FillRand(int** arr, const int m, const int n);
+
+void FillRand(double arr[], const int n);
+template<typename T>void FillRand(T arr[], const int n);
+void FillRand(double** arr, const int m, const int n);
+template<typename T>void FillRand(T** arr, const int m, const int n);
 
 template<typename T>void Print(T arr[], const int n);
 template<typename T>void Print(T** arr, const int m, const int n);
@@ -85,10 +88,10 @@ void main()
 	cout << "Введите количество элементов строки: ";
 	cin >> cols;
 	//1) Создаем массив указателей и сохраняем его адрес в указ на указ
-	int** arr2 = new int* [rows];
+	double** arr2 = new double* [rows];
 	//2) Выделяем память под строки 2-мерного массива:
 	for (int i = 0; i < rows; i++) {
-		arr2[i] = new int[cols] {};
+		arr2[i] = new double[cols] {};
 	}
 
 	cout << "Память выделена: " << endl;
@@ -131,14 +134,30 @@ void main()
 
 }
 
-void FillRand(int arr[], const int n) 
+void FillRand(double arr[], const int n)
+{
+	cout << typeid(arr[0]).name() << endl;
+	for (int i = 0; i < n; i++) {
+		arr[i] = rand() % 1000;
+		arr[i] /= 100;
+	}
+}
+template<typename T>void FillRand(T arr[], const int n) 
 {
 	for (int i = 0; i < n; i++)
 	{
 		arr[i] = rand() % 100;
 	}
 }
-void FillRand(int** arr, const int m, const int n)
+void FillRand(double** arr, const int m, const int n)
+{
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			arr[i][j] = double(rand() % 10000) /100;
+		}
+	}
+}
+template<typename T>void FillRand(T** arr, const int m, const int n)
 {
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {
