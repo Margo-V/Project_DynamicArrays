@@ -139,7 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="double_FillRand.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="templated_Arrays1.cpp" />
+    <ClCompile Include="templated_Arrays2.cpp" />
+    <ClCompile Include="templated_FillRand.cpp" />
+    <ClCompile Include="templated_Print.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="double_FillRand.h" />
+    <ClInclude Include="templated_Arrays1.h" />
+    <ClInclude Include="templated_Arrays2.h" />
+    <ClInclude Include="templated_FillRand.h" />
+    <ClInclude Include="templated_Print.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
