@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 using namespace std;
 #define tab "\t"
-//#define ARRAYS1
+#define ARRAYS1
 
 
 void FillRand(double arr[], const int n);
