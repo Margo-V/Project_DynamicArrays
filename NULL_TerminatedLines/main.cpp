@@ -26,6 +26,9 @@ int To_Int_Number(char str[]);
 bool Is_Bin_Number(char str[]);
 char* Dec_To_Bin(int decimal);
 int Bin_To_Dec(char str[]);
+void insert_spaces(char str[]);
+bool Is_Hex_number_2(char str[]);
+int Hex_To_Dec_2(char hex[]);
 
 
 
@@ -128,7 +131,8 @@ void main()
 	cout << Dec_To_Bin(decimal) << endl;*/
 
 	//cout << str << "(bin) = " << Bin_To_Dec(str) << "(dec)\n";
-	cout << "\n\nВведите шестнадцатеричное число: "; 
+#ifdef HOMETASK
+	cout << "\n\nВведите шестнадцатеричное число: ";
 	SetConsoleCP(1251);
 	cin.getline(str, n);//CP1251
 	SetConsoleCP(866);
@@ -137,24 +141,34 @@ void main()
 	SetConsoleCP(1251);
 	cin.getline(str, n);//CP1251
 	SetConsoleCP(866);
-	cout << str << " - из шестнадцатеричной в десятичную = " << hex_to_dec( str);
+	cout << str << " - из шестнадцатеричной в десятичную = " << hex_to_dec(str);
 
 
 	long int decimal1 = 0;
 	cout << "\n\nВведите десятичное число: ";
 	cin >> decimal1;
-	dec_to_hex( decimal1);
+	dec_to_hex(decimal1);
 	cout << endl;
 
 
 	const int m = 256;
 	char str_mac[m]{};
 	cout << "\nВведите строку( проверим, является ли строка mac-адресом): " << endl;
-	cin>> str_mac;
+	cin >> str_mac;
 
 
 	//char str[n] = { "00:E0:18:C3:11:89" };
 	cout << "Строка " << str_mac << (is_mac_address(str_mac) ? "" : " НЕ") << " MAC-адресом" << endl;
+
+
+#endif // HOMETASK
+
+	cout << "\n\nВведите шестнадцатеричное число: ";
+	SetConsoleCP(1251);
+	cin.getline(str, n);//CP1251
+	SetConsoleCP(866);
+	cout << "Строка " << str << (Is_Hex_number_2(str) ? "" : " НЕ") << " является шестнадцатеричным числом" << endl;
+	cout << str << "(hex) = " << Hex_To_Dec_2(str) << "(dec)\n";
 
 
 #ifdef CHECK_1
@@ -324,6 +338,21 @@ bool Is_Bin_Number(char str[])
 	}
 	return true;
 }
+void insert_spaces(char str[])
+{
+	for (int i = 1, digit=0; str[i]; i++)
+	{
+		if (digit % 4 == 0)
+		{
+			for (int j = strlen(str); j > 1; j--)
+			{
+				str[j] = str[j - 1];
+			}
+			str[i] = ' ';
+		}
+		digit++;
+	}
+}
 char* Dec_To_Bin(int decimal)
 {
 	//1) Определим количество двоичных разрядов:
@@ -349,6 +378,7 @@ char* Dec_To_Bin(int decimal)
 			decimal /= 2;				//Убираем младший разряд из числа
 		}
 	}
+	//insert_spaces(str);
 	return bin;
 }
 int Bin_To_Dec(char str[])
@@ -375,7 +405,34 @@ int Bin_To_Dec(char str[])
 	}
 	return decimal;
 }
+bool Is_Hex_number_2(char str[])
+{
+	for (int i = str[0] == '0' &&(str[1] =='x'||str[1]=='X') ? 2 : 0; str[i]; i++)
+	{
+		
+		if (
+			!(str[i] >= '0' && str[i] <= '9') &&
+			!(str[i] >= 'A' && str[i] <= 'F') &&
+			!(str[i] >= 'a' && str[i] <= 'a')
+			)
+			return false;
+	}
+	return true;
+}
+int Hex_To_Dec_2(char hex[])
+{
+	if (!Is_Hex_number_2(hex)) return 0;
+	int decimal = 0; 
+	for (int i = 0; hex[i]; i++)
+	{
+		decimal *= 16;
+		if (hex[i] >= '0' && hex[i] <= '9')decimal += hex[i] - '0';
+		if (hex[i] >= 'A' && hex[i] <= 'F')decimal += hex[i] - 'A' + 10;
+		if (hex[i] >= 'a' && hex[i] <= 'f')decimal += hex[i] - 'a' + 10;
+	}
 
+	return decimal;
+}
 
 
 bool is_hex_number(char str[])
