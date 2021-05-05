@@ -2,6 +2,11 @@
 #include <Windows.h>
 #include <math.h>
 #include <string.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <cstdlib>
+
+
 using namespace std;
 #define tab "\t";
 //#define STRING_DECLARATION
@@ -11,10 +16,10 @@ using namespace std;
 #define BINERY
 
 void ASCII();
-int StringLength(char str[]);
+int StringLength_STL(char str[]);
 
-void to_upper(char str[]);		// переводит строку в верхний регистр
-void to_lower(char str[]);		// Переводит строку в нижний регистр
+void to_upper_STL(char str[]);		// переводит строку в верхний регистр
+void to_lower_STL(char str[]);		// Переводит строку в нижний регистр
 void capitalize(char str[]);	// Первую букву каждого слова в предложении делает заглавной
 
 
@@ -29,7 +34,8 @@ int Bin_To_Dec(char str[]);
 void insert_spaces(char str[]);
 bool Is_Hex_number_2(char str[]);
 int Hex_To_Dec_2(char hex[]);
-
+bool is_hex_num_STL(char str[]);
+long int hex_to_dec_STL(char hex[]);
 
 
 bool is_hex_number(char str[]);// Проверяет, яв-ся ли функция шестнадацатиричным числом
@@ -167,8 +173,11 @@ void main()
 	SetConsoleCP(1251);
 	cin.getline(str, n);//CP1251
 	SetConsoleCP(866);
-	cout << "Строка " << str << (Is_Hex_number_2(str) ? "" : " НЕ") << " является шестнадцатеричным числом" << endl;
-	cout << str << "(hex) = " << Hex_To_Dec_2(str) << "(dec)\n";
+	//cout << "Строка " << str << (Is_Hex_number_2(str) ? "" : " НЕ") << " является шестнадцатеричным числом" << endl;
+	//cout << "Строка " << str << (is_hex_num_STL(str) ? "" : " НЕ") << " является шестнадцатеричным числом" << endl;
+	//cout << str << "(hex) = " << Hex_To_Dec_2(str) << "(dec)\n";
+	//cout << str << "(hex) = " << hex_to_dec_STL(str) << "(dec)\n";
+	cout << "Длина строки " << str << " = " << StringLength_STL(str) << endl;
 
 
 #ifdef CHECK_1
@@ -842,37 +851,25 @@ void ASCII()
 		cout << (char)i << endl;
 	}
 }
-int StringLength(char str[])
+int StringLength_STL(char str[])
 {
-	int i =0;
-	for (; str[i]; i++);
-	return i;
+	int length = 0;
+	length = strlen(str);
 
-	/*
-	false - это 0
-	true - все что НЕ 0
-	*/
+	return length;
 }
-void to_upper(char str[])
+void to_upper_STL(char str[])
 {
 	for (int i = 0; str[i]; i++) 
 	{
-		if (// ЕСЛИ символ 
-			str[i] >= 'a' && str[i] <= 'z' || // маленькая англ буква ИЛИ
-			str[i] >= 'а' && str[i] <= 'я'	  // маленькая русская буква
-			)// тогда переводим в верхний регистр
-			str[i] -= ' ';
+		toupper(str[i]);
 	}
 }
-void to_lower(char str[])
+void to_lower_STL(char str[])
 {
 	for (int i = 0; str[i]; i++)
 	{
-		if (
-			str[i] >= 'A' && str[i] <= 'Z' ||
-			str[i] >= 'А' && str[i] <= 'Я'
-			)
-			str[i] += 32;
+		tolower(str[i]);
 	}
 }
 void capitalize(char str[])
@@ -889,4 +886,27 @@ void capitalize(char str[])
 		}
 	}
 	
+}
+
+
+bool is_hex_num_STL(char str[])
+{
+	for (int i = 0; str[i]; i++)
+	{
+		if (!isxdigit(str[i]))
+		{
+			return false;
+		}
+	}
+	
+
+	return true;
+}
+long int hex_to_dec_STL(char hex[])
+{
+	if (!is_hex_num_STL(hex))return false;
+	long int number = 0;
+	number = strtol(hex, NULL, 16);
+
+	return number;
 }
