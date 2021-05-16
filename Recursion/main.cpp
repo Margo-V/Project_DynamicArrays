@@ -3,9 +3,14 @@
 
 using namespace std;
 
+#define tab "\t"
+
 //#define RECURSION_BASICS
 //#define FACTORIAL
+#define POWER
+#define DataType unsigned long long int
 
+// typedef unsigned long long int DataType2
 
 void elevator(int floor);
 int factorial(int n);
@@ -13,6 +18,8 @@ int factorial_2(int n);
 int factorial_3(int n);
 int factorial_4(int n);
 int fibonacci(int n);
+int Fibonacci_1(int n, int a=0, int b=1);
+int Fibonacci_2(int n, DataType a, DataType b);
 
 
 double power(double a, int n);
@@ -41,16 +48,23 @@ void main()
 	cout << factorial_4(n) << endl;
 #endif // FACTORIAL
 
-	/*int a; //Основание степени
+#ifdef POWER
+	int a; //Основание степени
 	int b; //Показатель степени
 	cout << "Ввдите основание степени: " << endl; cin >> a;
 	cout << "Ввдите показатель степени: " << endl; cin >> b;
-	
-	cout << power(a, b);*/
 
-	int fib;
-	cout << "\nВведите число для расчета чисел Фибоначчи:\t"; cin >> fib;
-	cout << fibonacci(fib);
+	cout << power(a, b);
+#endif // POWER
+
+
+	int fib, n;
+	cout << "\nВведите значение, до которого нужно вывести ряд Фибоначчи:\t"; 
+	cin >> fib;
+	Fibonacci_1(fib);
+	cout << "Сколько чисел из ряда нужно вывести" << endl;
+	cin >> n;
+	Fibonacci_2(n);
 }
 
 
@@ -134,3 +148,25 @@ int fibonacci(int n)
 	//return n == 0  ? 0 : (n == 1) ? 1  : (fibonacci(n - 1) + fibonacci(n - 2));
 	
 }
+
+int Fibonacci_1(int n, int a, int b)
+{
+	//Выводит числа Фибоначчи до заданного предела
+	if (a > n)return;
+	cout << a << tab;
+	Fibonacci_1(n, b, a + b);
+}
+
+int Fibonacci_2(int n, DataType a, DataType b)
+{
+	//Выводит заданное количество чисел из ряда Фибоначчи
+	if (n==0)return;
+	cout << a << tab;
+	Fibonacci_1(n-1, b, a + b);
+
+	/*static int i = 0;
+	if (i > n)return;
+	cout << i++ << " - " << a << tab;
+	Fibonacci_1(n, b, a + b);*/
+}
+
