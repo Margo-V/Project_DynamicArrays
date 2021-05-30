@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <conio.h>
 
 using namespace std;
@@ -24,7 +24,7 @@ int Fibonacci_1(int n, int a = 0, int b = 1);
 int Fibonacci_2(int n, DataType a, DataType b);
 #endif // FACTORIAL
 
-// До заданного значения выводятся числа
+// Р”Рѕ Р·Р°РґР°РЅРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РІС‹РІРѕРґСЏС‚СЃСЏ С‡РёСЃР»Р°
 int Fibonacci_hometask(int n, int x = 0 );
 
 int Fibonacci_hometask_2(int count, LONG_INT_TYPE x = 0 );
@@ -41,44 +41,44 @@ void main()
 	cout << "Hello world\n" << endl;
 
 	int floor;
-	cout << "На каком Вы этаже?"; cin >> floor;
+	cout << "РќР° РєР°РєРѕРј Р’С‹ СЌС‚Р°Р¶Рµ?"; cin >> floor;
 	elevator(floor);
 
-	cout << "Еще разочек? (y/n)";
-	if (_getch() == 'y')main(); // _getch() -ожидает нажатие клавиши,
-	//и возвращает ASCII-код нажатой клавиши  
+	cout << "Р•С‰Рµ СЂР°Р·РѕС‡РµРє? (y/n)";
+	if (_getch() == 'y')main(); // _getch() -РѕР¶РёРґР°РµС‚ РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€Рё,
+	//Рё РІРѕР·РІСЂР°С‰Р°РµС‚ ASCII-РєРѕРґ РЅР°Р¶Р°С‚РѕР№ РєР»Р°РІРёС€Рё  
 #endif // RECURSION_BASICS
 
 #ifdef FACTORIAL
 	int n;
-	cout << "Введите число для вычисления факториала: "; cin >> n;
+	cout << "Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ С„Р°РєС‚РѕСЂРёР°Р»Р°: "; cin >> n;
 	cout << factorial_4(n) << endl;
 #endif // FACTORIAL
 
 #ifdef POWER
-	int a; //Основание степени
-	int b; //Показатель степени
-	cout << "Ввдите основание степени: " << endl; cin >> a;
-	cout << "Ввдите показатель степени: " << endl; cin >> b;
+	int a; //РћСЃРЅРѕРІР°РЅРёРµ СЃС‚РµРїРµРЅРё
+	int b; //РџРѕРєР°Р·Р°С‚РµР»СЊ СЃС‚РµРїРµРЅРё
+	cout << "Р’РІРґРёС‚Рµ РѕСЃРЅРѕРІР°РЅРёРµ СЃС‚РµРїРµРЅРё: " << endl; cin >> a;
+	cout << "Р’РІРґРёС‚Рµ РїРѕРєР°Р·Р°С‚РµР»СЊ СЃС‚РµРїРµРЅРё: " << endl; cin >> b;
 
 	cout << power(a, b);
 #endif // POWER
 
 #ifdef FACTORIAL
 	int fib, n;
-	cout << "\nВведите значение, до которого нужно вывести ряд Фибоначчи:\t";
+	cout << "\nР’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ, РґРѕ РєРѕС‚РѕСЂРѕРіРѕ РЅСѓР¶РЅРѕ РІС‹РІРµСЃС‚Рё СЂСЏРґ Р¤РёР±РѕРЅР°С‡С‡Рё:\t";
 	cin >> fib;
 	Fibonacci_1(fib);
-	cout << "Сколько чисел из ряда нужно вывести" << endl;
+	cout << "РЎРєРѕР»СЊРєРѕ С‡РёСЃРµР» РёР· СЂСЏРґР° РЅСѓР¶РЅРѕ РІС‹РІРµСЃС‚Рё" << endl;
 	cin >> n;
 	Fibonacci_2(n);
 #endif // FACTORIAL
 
 	int n, count;
-	cout << "Введите число для вычисления чисел Фибоначчи: ";cin >> n;
+	cout << "Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ С‡РёСЃРµР» Р¤РёР±РѕРЅР°С‡С‡Рё: ";cin >> n;
 	Fibonacci_hometask(n);
 
-	cout << "\n\nВведите какое количество чисел хотите вывести на экран: "; cin >> count;
+	cout << "\n\nР’РІРµРґРёС‚Рµ РєР°РєРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ С‡РёСЃРµР» С…РѕС‚РёС‚Рµ РІС‹РІРµСЃС‚Рё РЅР° СЌРєСЂР°РЅ: "; cin >> count;
 	Fibonacci_hometask_2(count);
 }
 
@@ -87,17 +87,17 @@ void elevator(int floor)
 {
 	if (floor == 0)
 	{
-		cout << "Привет подвал" << endl;
+		cout << "РџСЂРёРІРµС‚ РїРѕРґРІР°Р»" << endl;
 		return;
 	}
 	static int counter = 0;
 
-	cout << "Мы на " << floor << "этаже" << "\t";
+	cout << "РњС‹ РЅР° " << floor << "СЌС‚Р°Р¶Рµ" << "\t";
 	cout << counter++ << endl;
 
 	elevator(floor - 1);
 
-	cout << "Мы на " << floor << "этаже" << endl;
+	cout << "РњС‹ РЅР° " << floor << "СЌС‚Р°Р¶Рµ" << endl;
 	cout << counter++ << endl;
 }
 
@@ -138,7 +138,7 @@ double power(double a, int n)
 int fibonacci(int n)
 {
 	//cout << n << endl;
-	//1- й способ с выводом на экран
+	//1- Р№ СЃРїРѕСЃРѕР± СЃ РІС‹РІРѕРґРѕРј РЅР° СЌРєСЂР°РЅ
 	if (n == 0)
 	{
 		cout << n << endl;
@@ -159,7 +159,7 @@ int fibonacci(int n)
 	}
 
 
-	//2-й способ
+	//2-Р№ СЃРїРѕСЃРѕР±
 	//return n == 0  ? 0 : (n == 1) ? 1  : (fibonacci(n - 1) + fibonacci(n - 2));
 	
 }
@@ -168,7 +168,7 @@ int fibonacci(int n)
 
 int Fibonacci_1(int n, int a, int b)
 {
-	//Выводит числа Фибоначчи до заданного предела
+	//Р’С‹РІРѕРґРёС‚ С‡РёСЃР»Р° Р¤РёР±РѕРЅР°С‡С‡Рё РґРѕ Р·Р°РґР°РЅРЅРѕРіРѕ РїСЂРµРґРµР»Р°
 	if (a > n)return;
 	cout << a << tab;
 	Fibonacci_1(n, b, a + b);
@@ -176,7 +176,7 @@ int Fibonacci_1(int n, int a, int b)
 
 int Fibonacci_2(int n, DataType a, DataType b)
 {
-	//Выводит заданное количество чисел из ряда Фибоначчи
+	//Р’С‹РІРѕРґРёС‚ Р·Р°РґР°РЅРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ С‡РёСЃРµР» РёР· СЂСЏРґР° Р¤РёР±РѕРЅР°С‡С‡Рё
 	if (n == 0)return;
 	cout << a << tab;
 	Fibonacci_1(n - 1, b, a + b);
@@ -191,7 +191,7 @@ int Fibonacci_2(int n, DataType a, DataType b)
 
 int Fibonacci_hometask(int n, int x)
 {
-	// До заданного значения выводятся числа
+	// Р”Рѕ Р·Р°РґР°РЅРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РІС‹РІРѕРґСЏС‚СЃСЏ С‡РёСЃР»Р°
 	if (x > n) return 0;
 
 	static int c = 1;
